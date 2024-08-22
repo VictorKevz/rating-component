@@ -1,27 +1,35 @@
-import React, { useState } from "react";
-import thanksIcon from "../assets/images/thank-you.svg"
-import CancelIcon from '@mui/icons-material/Cancel';
+import React from "react";
+import thankYouIcon from "../assets/images/thank-you.svg";
+import CancelIcon from "@mui/icons-material/Cancel";
+import "../css/modal.css";
 
-
-function Modal(props) {
-
-    function handleModal(){
-        props.onClose();
-    }
+function Modal({ onClose, result }) {
   return (
-    <div className="outer-container modal">
-      <div className="inner-container modal">
-        <img src={thanksIcon} alt="thank-you-icon"/>
-        <button className="modal-button">You selected {props.selected} out of {props.total}</button>
-        <h1>Thank You!</h1>
-        <p>
-          We appreciate you taking the time to give a rating. If you ever need
-          more support, don't hesitate to get in touch!
+    <div className="modal-wrapper" aria-modal="true" role="dialog">
+      <div className="modal-container">
+        <div className="modal-icon-wrapper">
+          <img
+            src={thankYouIcon}
+            alt="Illustration of a thank you message"
+            className="modal-img"
+          />
+        </div>
+        <span className="result">{`You selected ${result} out of 5`}</span>
+        <h2 className="title">Thank You</h2>
+        <p className="parag">
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
         </p>
-        <button className="close-button" onClick={handleModal}><CancelIcon fontSize="large" className="cancel-icon"/></button>
+        <button
+          type="button"
+          className="modal-btn"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          <CancelIcon fontSize="large" />
+        </button>
       </div>
     </div>
   );
 }
-
 export default Modal;
